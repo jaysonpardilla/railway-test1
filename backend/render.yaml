@@ -1,16 +1,11 @@
 services:
   - type: web
-    name: backend
-    env: docker
-    plan: free
-    region: singapore
-    dockerfilePath: Dockerfile
+    name: fsl-backend
+    runtime: python
+    buildCommand: ""
+    startCommand: gunicorn backend.wsgi:application
     envVars:
-      - key: SECRET_KEY
-        value: django-insecure-1c0%moo=4#arobz3ded0^k%njil&lg5_lhp7i^7mvvbkry8)rs
       - key: DJANGO_SETTINGS_MODULE
         value: backend.settings
-      - key: DEBUG
-        value: False
-      - key: ALLOWED_HOSTS
-        value: *
+      - key: PYTHON_VERSION
+        value: 3.10
